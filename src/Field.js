@@ -12,103 +12,103 @@ class Field {
 
 	renderCorners(){
 		push()
-		stroke(options.fieldLinesColor)
-		strokeWeight(options.fieldLinesSize)
+		stroke(options.env.fieldLinesColor)
+		strokeWeight(options.env.fieldLinesSize)
 		noFill()
-		ellipse(options.fieldOffset, options.fieldOffset, options.cornersRadius*2)
-		ellipse(width-options.fieldOffset, options.fieldOffset, options.cornersRadius*2)
-		ellipse(options.fieldOffset, height-options.fieldOffset, options.cornersRadius*2)
-		ellipse(width-options.fieldOffset, height-options.fieldOffset, options.cornersRadius*2)
+		ellipse(options.env.fieldOffset, options.env.fieldOffset, options.env.cornersRadius*2)
+		ellipse(width-options.env.fieldOffset, options.env.fieldOffset, options.env.cornersRadius*2)
+		ellipse(options.env.fieldOffset, height-options.env.fieldOffset, options.env.cornersRadius*2)
+		ellipse(width-options.env.fieldOffset, height-options.env.fieldOffset, options.env.cornersRadius*2)
 		pop()
 	}
 	renderOffsets(){
 		push()
 		rectMode(CORNER)
 		noStroke()
-		fill(options.fieldGrassColorOut)
-		rect(0, 0, width, options.fieldOffset)
-		rect(0, 0, options.fieldOffset, height)
-		rect(width-options.fieldOffset, 0, width-options.fieldOffset, height)
-		rect(0, height-options.fieldOffset, width-options.fieldOffset, height-options.fieldOffset)
+		fill(options.env.fieldGrassColorOut)
+		rect(0, 0, width, options.env.fieldOffset)
+		rect(0, 0, options.env.fieldOffset, height)
+		rect(width-options.env.fieldOffset, 0, width-options.env.fieldOffset, height)
+		rect(0, height-options.env.fieldOffset, width-options.env.fieldOffset, height-options.env.fieldOffset)
 		pop()
 	}
 	renderFieldBorders(){
 		push()
-		stroke(options.fieldLinesColor)
-		strokeWeight(options.fieldLinesSize)
-		line(options.fieldOffset, options.fieldOffset, options.fieldOffset, height-options.fieldOffset)
-		line(options.fieldOffset, options.fieldOffset, width-options.fieldOffset, options.fieldOffset)
-		line(options.fieldOffset, height-options.fieldOffset, width-options.fieldOffset, height-options.fieldOffset)
-		line(width-options.fieldOffset, height-options.fieldOffset, width-options.fieldOffset, options.fieldOffset)
+		stroke(options.env.fieldLinesColor)
+		strokeWeight(options.env.fieldLinesSize)
+		line(options.env.fieldOffset, options.env.fieldOffset, options.env.fieldOffset, height-options.env.fieldOffset)
+		line(options.env.fieldOffset, options.env.fieldOffset, width-options.env.fieldOffset, options.env.fieldOffset)
+		line(options.env.fieldOffset, height-options.env.fieldOffset, width-options.env.fieldOffset, height-options.env.fieldOffset)
+		line(width-options.env.fieldOffset, height-options.env.fieldOffset, width-options.env.fieldOffset, options.env.fieldOffset)
 		pop()
 	}
 	renderLeftPenaltyBox(){
 		push()
-		fill(options.fieldGrassColor)
-		stroke(options.fieldLinesColor)
-		strokeWeight(options.fieldLinesSize)
+		fill(options.env.fieldGrassColor)
+		stroke(options.env.fieldLinesColor)
+		strokeWeight(options.env.fieldLinesSize)
 		rectMode(CENTER)
 		
 		// left penalty kick circle
-		ellipse((options.penaltyKickDist * options.renderScale) + options.fieldOffset, height/2, options.penaltyCircleRadius * options.renderScale*2)
+		ellipse((options.env.penaltyKickDist * options.renderScale) + options.env.fieldOffset, height/2, options.env.penaltyCircleRadius * options.renderScale*2)
 		// left penalty box borders
-		rect(((options.penaltyBoxWidth/2) * options.renderScale) + options.fieldOffset, 
+		rect(((options.env.penaltyBoxWidth/2) * options.renderScale) + options.env.fieldOffset, 
 			height/2, 
-			options.penaltyBoxWidth * options.renderScale, 
-			options.penaltyBoxHeight * options.renderScale
+			options.env.penaltyBoxWidth * options.renderScale, 
+			options.env.penaltyBoxHeight * options.renderScale
 		)
 		// left goal box
-		rect(((options.goalBoxWidth/2) * options.renderScale) + options.fieldOffset, 
+		rect(((options.env.goalBoxWidth/2) * options.renderScale) + options.env.fieldOffset, 
 			height/2, 
-			options.goalBoxWidth * options.renderScale, 
-			options.goalBoxHeight * options.renderScale
+			options.env.goalBoxWidth * options.renderScale, 
+			options.env.goalBoxHeight * options.renderScale
 		)
 		// left penalty kick point
-		ellipse((options.penaltyKickDist * options.renderScale) + options.fieldOffset, height/2, 2)
+		ellipse((options.env.penaltyKickDist * options.renderScale) + options.env.fieldOffset, height/2, 2)
 		pop()
 	}
 	renderRightPenaltyBox(){
 		push()
-		fill(options.fieldGrassColor)
-		stroke(options.fieldLinesColor)
-		strokeWeight(options.fieldLinesSize)
+		fill(options.env.fieldGrassColor)
+		stroke(options.env.fieldLinesColor)
+		strokeWeight(options.env.fieldLinesSize)
 		rectMode(CENTER)
 
 		// right penalty kick circle
-		ellipse((width-options.penaltyKickDist * options.renderScale) - options.fieldOffset, height/2, options.penaltyCircleRadius * options.renderScale*2)
+		ellipse((width-options.env.penaltyKickDist * options.renderScale) - options.env.fieldOffset, height/2, options.env.penaltyCircleRadius * options.renderScale*2)
 		// right penalty box borders
-		rect((width-(options.penaltyBoxWidth/2) * options.renderScale) - options.fieldOffset, 
+		rect((width-(options.env.penaltyBoxWidth/2) * options.renderScale) - options.env.fieldOffset, 
 			height/2, 
-			options.penaltyBoxWidth * options.renderScale, 
-			options.penaltyBoxHeight * options.renderScale
+			options.env.penaltyBoxWidth * options.renderScale, 
+			options.env.penaltyBoxHeight * options.renderScale
 		)
 		// right goal box
-		rect((width-(options.goalBoxWidth/2) * options.renderScale) - options.fieldOffset, 
+		rect((width-(options.env.goalBoxWidth/2) * options.renderScale) - options.env.fieldOffset, 
 			height/2, 
-			options.goalBoxWidth * options.renderScale, 
-			options.goalBoxHeight * options.renderScale
+			options.env.goalBoxWidth * options.renderScale, 
+			options.env.goalBoxHeight * options.renderScale
 		)
 		// right penalty kick point
-		ellipse((width-options.penaltyKickDist * options.renderScale) - options.fieldOffset, height/2, 2)
+		ellipse((width-options.env.penaltyKickDist * options.renderScale) - options.env.fieldOffset, height/2, 2)
 		pop()
 	}
 	renderMiddleCircle(){
 		push()
 		noFill()
-		stroke(options.fieldLinesColor)
-		strokeWeight(options.fieldLinesSize)
-		line(width/2, options.fieldOffset, width/2, height-options.fieldOffset)
-		ellipse(width/2, height/2, options.middleCircleRadius * options.renderScale*2)
+		stroke(options.env.fieldLinesColor)
+		strokeWeight(options.env.fieldLinesSize)
+		line(width/2, options.env.fieldOffset, width/2, height-options.env.fieldOffset)
+		ellipse(width/2, height/2, options.env.middleCircleRadius * options.renderScale*2)
 		ellipse(width/2, height/2, 4)
 		pop()
 	}
 	renderGoals(){
 		push()
 		noStroke()
-		fill(options.goalNetColor)
+		fill(options.env.goalNetColor)
 		rectMode(CENTER)
-		rect(options.fieldOffset-options.goalWidth/2, height/2, options.goalWidth, options.goalHeight)
-		rect(width-options.fieldOffset+options.goalWidth/2, height/2, options.goalWidth, options.goalHeight)
+		rect(options.env.fieldOffset-options.env.goalWidth/2, height/2, options.env.goalWidth, options.env.goalHeight)
+		rect(width-options.env.fieldOffset+options.env.goalWidth/2, height/2, options.env.goalWidth, options.env.goalHeight)
 		pop()
 	}
 }
