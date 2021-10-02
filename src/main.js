@@ -13,19 +13,19 @@ function setup() {
     field = new Field()
 
     //  add players
-    // defenders
+    // attackers
     for(let a = 0; a < 11; a++){
         let posCalcX = (width/5) + a * (options.players.bodyRadius * options.renderScale*2.5)
         let posCalcY = options.env.fieldOffset/3*2
-        if(a == 0) players.push(new Player(createVector(posCalcX, posCalcY), TEAM_DEF, a+1, true))
-        else players.push(new Player(createVector(posCalcX, posCalcY), TEAM_DEF, a+1))
+        if(a == 0) players.push(new Player(createVector(posCalcX, posCalcY), TEAM_ATK, a+1, true))
+        else players.push(new Player(createVector(posCalcX, posCalcY), TEAM_ATK, a+1))
     }
-    // attackers
+    // defenders
     for(let a = 0; a < 11; a++){
         let posCalcX = (width-width/5) - a * (options.players.bodyRadius * options.renderScale*2.5)
         let posCalcY = options.env.fieldOffset/3*2
-        if(a == 0) players.push(new Player(createVector(posCalcX, posCalcY), TEAM_ATK, a+1, true))
-        else players.push(new Player(createVector(posCalcX, posCalcY), TEAM_ATK, a+1))
+        if(a == 0) players.push(new Player(createVector(posCalcX, posCalcY), TEAM_DEF, a+1, true))
+        else players.push(new Player(createVector(posCalcX, posCalcY), TEAM_DEF, a+1))
     }
 }
 
@@ -38,5 +38,22 @@ function draw() {
     //  render players
     for(let p of players){
         p.render()
+		p.move()
+    }
+}
+
+let selectedPlayer = undefined
+function mouseClicked(){
+    if(selectedPlayer){
+		selectedPlayer.selected = false
+		return selectedPlayer = undefined
+	}
+	
+	for(let p of players){
+        let d = dist(mouseX, mouseY, p.pos.x, p.pos.y)
+		if(d <= options.players.bodyRadius){
+			selectedPlayer = p
+            return p.selected = true
+        }
     }
 }

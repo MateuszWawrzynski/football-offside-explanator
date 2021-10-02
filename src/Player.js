@@ -8,6 +8,12 @@ class Player {
 		this.selected = false;
 	}
 
+	move(){
+		if(this.selected){
+			this.pos = createVector(mouseX, mouseY - options.players.bodyRadius/2)
+		}
+	}
+
 	render(){
 		push()
 		translate(this.pos.x, this.pos.y)
