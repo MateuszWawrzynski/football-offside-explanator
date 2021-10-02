@@ -1,6 +1,6 @@
 
 const options = {
-	renderScale: .7,
+	renderScale: 1,
 
 	fieldOffset: 20,
 	fieldWidth: 1065,
