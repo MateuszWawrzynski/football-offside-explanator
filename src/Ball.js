@@ -1,16 +1,17 @@
 class Ball {
 	constructor(_owner){
 		this.owner = _owner
-		
-		this.pos = createVector(0, 0)
+		this.pos = createVector(_owner.pos.x, _owner.pos.y)
 	}
 
 	move(){
-		this.pos = createVector(this.owner.pos.x, this.owner.pos.y)
+		let newPos = this.owner.pos.copy()
+		newPos.sub(this.pos).limit(options.ball.passSpeed)
+		this.pos.add(newPos)
 	}
 
 	pass(newOwner){
-		ball.owner = newOwner
+		this.owner = newOwner
 	}
 
 	render(){

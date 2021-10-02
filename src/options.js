@@ -42,6 +42,7 @@ const options = {
 
 	ball: {
 		radius: 6,
-		color: '#FFFFFF'
+		color: '#FFFFFF',
+		passSpeed: 10
 	}
 }

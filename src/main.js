@@ -5,6 +5,9 @@ let players = []
 
 
 function setup() {
+    //  adjust renderScale to fit to the window
+    // options.renderScale = (window.innerHeight * .7) / options.env.fieldHeight
+    
     createCanvas(
         (options.env.fieldWidth + options.env.fieldOffset*2) * options.renderScale, 
         (options.env.fieldHeight + options.env.fieldOffset*2) * options.renderScale
@@ -30,8 +33,9 @@ function setup() {
     }
 
 	//	add ball and pass it to random player
-		// players[5].pos.y = height/4
-		// ball = new Ball(players[5])
+		// players[1].pos.y = height/4
+		// players[10].pos.y = height/4
+		// ball = new Ball(players[1])
 	ball = new Ball(random(players))
 }
 
