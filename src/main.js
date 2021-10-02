@@ -1,8 +1,18 @@
 
+let field
+
+
 function setup() {
-    createCanvas(1065, 715)
+    createCanvas(
+        (options.fieldWidth + options.fieldOffset*2) * options.renderScale, 
+        (options.fieldHeight + options.fieldOffset*2) * options.renderScale
+    )
+    
+    //  objects to render
+    field = new Field()
 }
 
 function draw() {
-    background('#567D46')
+    background(options.fieldGrassColor)
+    field.render();
 }
