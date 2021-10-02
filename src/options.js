@@ -38,5 +38,10 @@ const options = {
 		defendersColor: '#5555FF',
 		attackersColor: '#FF5555',
 		gkStroke: '#FFBB55'
+	},
+
+	ball: {
+		radius: 6,
+		color: '#FFFFFF'
 	}
 }

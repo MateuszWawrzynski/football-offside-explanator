@@ -1,5 +1,6 @@
 
 let field
+let ball
 let players = []
 
 
@@ -27,6 +28,11 @@ function setup() {
         if(a == 0) players.push(new Player(createVector(posCalcX, posCalcY), TEAM_DEF, a+1, true))
         else players.push(new Player(createVector(posCalcX, posCalcY), TEAM_DEF, a+1))
     }
+
+	//	add ball and pass it to random player
+		// players[5].pos.y = height/4
+		// ball = new Ball(players[5])
+	ball = new Ball(random(players))
 }
 
 function draw() {
@@ -37,9 +43,13 @@ function draw() {
     
     //  render players
     for(let p of players){
-        p.render()
 		p.move()
+        p.render()
     }
+
+	//	render ball and update it position
+	ball.move()
+	ball.render()
 }
 
 let selectedPlayer = undefined
@@ -56,4 +66,19 @@ function mouseClicked(){
             return p.selected = true
         }
     }
+}
+
+function keyPressed(){
+	if(key == 'e'){
+		if(selectedPlayer){
+			return
+		}
+		
+		for(let p of players){
+			let d = dist(mouseX, mouseY, p.pos.x, p.pos.y)
+			if(p != ball.owner && d <= options.players.bodyRadius){
+				return ball.pass(p)
+			}
+		}
+	}
 }

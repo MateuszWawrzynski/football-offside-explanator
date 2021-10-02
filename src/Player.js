@@ -10,7 +10,7 @@ class Player {
 
 	move(){
 		if(this.selected){
-			this.pos = createVector(mouseX, mouseY - options.players.bodyRadius/2)
+			this.pos = createVector(mouseX, mouseY - options.players.bodyRadius/2 * options.renderScale)
 		}
 	}
 

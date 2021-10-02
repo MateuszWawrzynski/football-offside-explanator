@@ -28,13 +28,17 @@
 				color: white;
 				text-shadow: 1px 1px 10px black, -1px 1px 10px black, 1px -1px 10px black, -1px -1px 10px black;
 			}
+
+			canvas {
+				box-shadow: 5px 5px 25px #325326;
+			}
 		</style>
 	</head>
 	<body>
 		<!-- INFO -->
 		<div class='info'>
 			<p>Click with the LEFT MOUSE BUTTON on players to move their position</p>
-			<p>Press "E" key to pass the ball between players</p>
+			<p>Aim on  other player and press "E" key to pass the ball</p>
 		</div>
 
 		<!-- p5.js library -->
@@ -47,5 +51,6 @@
 		<!-- App resources -->
 		<script src='src/Field.js'></script>
 		<script src='src/Player.js'></script>
+		<script src='src/Ball.js'></script>
 	</body>
 </html>
