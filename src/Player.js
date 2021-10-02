@@ -5,13 +5,27 @@ class Player {
 		this.number = _number
 		this.isGK = _isGK
 
-		this.selected = false;
+		this.selected = false
+		this.runVector = createVector(0, 0)
 	}
 
 	move(){
 		if(this.selected){
 			this.pos = createVector(mouseX, mouseY - options.players.bodyRadius/2 * options.renderScale)
 		}
+		else{
+			if(ball.owner == this) return
+			this.pos.add(this.runVector)
+
+			//	prevent players to run outside the canvas
+			this.pos.x = Math.max(0, Math.min(this.pos.x, width))
+			this.pos.y = Math.max(0, Math.min(this.pos.y, height))
+		}
+	}
+
+	run(v){
+		if(ball.owner == this) return
+		this.runVector.add(v, 0).limit(1)
 	}
 
 	render(){

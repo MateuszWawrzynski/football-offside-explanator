@@ -33,10 +33,10 @@ function setup() {
     }
 
 	//	add ball and pass it to random player
-		// players[1].pos.y = height/4
-		// players[10].pos.y = height/4
-		// ball = new Ball(players[1])
-	ball = new Ball(random(players))
+		players[1].pos.y = height/4
+		players[10].pos.y = height/4
+		ball = new Ball(players[1])
+	// ball = new Ball(random(players))
 }
 
 function draw() {
@@ -85,4 +85,20 @@ function keyPressed(){
 			}
 		}
 	}
+    else if(keyCode == LEFT_ARROW){
+        for(let p of players){
+			let d = dist(mouseX, mouseY, p.pos.x, p.pos.y)
+			if(d <= options.players.bodyRadius){
+				return p.run(-1)
+			}
+		}
+    }
+    else if(keyCode == RIGHT_ARROW){
+        for(let p of players){
+			let d = dist(mouseX, mouseY, p.pos.x, p.pos.y)
+			if(d <= options.players.bodyRadius){
+				return p.run(1)
+			}
+		}
+    }
 }
