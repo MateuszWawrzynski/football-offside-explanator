@@ -14,19 +14,37 @@
 			
 			body {	
 				display: flex;
+				flex-direction: column;
 				justify-content: center;
 				align-items: center;
 				height: 100vh;
-				background-color: #5D884C;
+				background-color: #527942;
+			}
+
+			.info {
+				margin-bottom: 3em;
+				font-family: Montserrat, sans-serif;
+				text-align: center;
+				color: white;
+				text-shadow: 1px 1px 10px black, -1px 1px 10px black, 1px -1px 10px black, -1px -1px 10px black;
 			}
 		</style>
 	</head>
 	<body>
+		<!-- INFO -->
+		<div class='info'>
+			<p>Click with the LEFT MOUSE BUTTON on players to move their position</p>
+			<p>Press "E" key to pass the ball between players</p>
+		</div>
+
+		<!-- p5.js library -->
 		<script src='https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js'></script>
 
+		<!-- Main app scripts -->
 		<script src='src/options.js'></script>
 		<script src='src/main.js'></script>
 
+		<!-- App resources -->
 		<script src='src/Field.js'></script>
 		<script src='src/Player.js'></script>
 	</body>
