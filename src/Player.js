@@ -62,6 +62,12 @@ class Player {
 		textSize(options.players.bodyRadius * options.renderScale)
 		textAlign(CENTER, CENTER)
 		text(this.number, 0, 0)
+
+		//	offside indicator
+		if(offsideLine.visibility && this.team == TEAM_ATK && this.pos.x + options.players.bodyRadius > offsideLine.posX){
+			fill(options.offsideLine.color)
+			ellipse(0, -options.players.bodyRadius * options.renderScale*2, options.players.bodyRadius * options.renderScale)
+		}
 		pop()
 	}
 }

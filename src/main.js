@@ -2,6 +2,7 @@
 let field
 let ball
 let players = []
+let offsideLine
 
 
 function setup() {
@@ -32,11 +33,17 @@ function setup() {
         else players.push(new Player(createVector(posCalcX, posCalcY), TEAM_DEF, a+1))
     }
 
+    //  randomize players positions
+    // for(let p of players){
+    //     p.pos.x = random(width/10, width-width/10)
+    //     p.pos.y = random(height/10, height-height/10)
+    // }
+
 	//	add ball and pass it to random player
-		players[1].pos.y = height/4
-		players[10].pos.y = height/4
-		ball = new Ball(players[1])
-	// ball = new Ball(random(players))
+	ball = new Ball(random(players))
+
+    //  add offside line
+    offsideLine = new OffsideLine()
 }
 
 function draw() {
@@ -54,6 +61,10 @@ function draw() {
 	//	render ball and update it position
 	ball.move()
 	ball.render()
+
+    //  draw offside line
+    if(offsideLine.visibility)
+        offsideLine.render()
 }
 
 let selectedPlayer = undefined
@@ -73,7 +84,8 @@ function mouseClicked(){
 }
 
 function keyPressed(){
-	if(key == 'e'){
+	//  ball passing
+    if(key == 'e'){
 		if(selectedPlayer){
 			return
 		}
@@ -85,6 +97,8 @@ function keyPressed(){
 			}
 		}
 	}
+
+    //  player run option
     else if(keyCode == LEFT_ARROW){
         for(let p of players){
 			let d = dist(mouseX, mouseY, p.pos.x, p.pos.y)
@@ -100,5 +114,10 @@ function keyPressed(){
 				return p.run(1)
 			}
 		}
+    }
+
+    //  toggle the offside line rendering
+    else if(key == 'f'){
+        offsideLine.visibility = !offsideLine.visibility
     }
 }

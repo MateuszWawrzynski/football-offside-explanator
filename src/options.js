@@ -44,5 +44,9 @@ const options = {
 		radius: 6,
 		color: '#FFFFFF',
 		passSpeed: 10
+	},
+
+	offsideLine: {
+		color: '#FF0000'
 	}
 }
