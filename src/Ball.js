@@ -26,9 +26,8 @@ class Ball {
 	render(){
 		push()
 		translate(this.pos.x + options.players.bodyRadius, this.pos.y)
-		stroke(0)
-		fill(options.ball.color)
-		ellipse(0, 0, options.ball.radius * options.renderScale*2)
+		imageMode(CENTER)
+		image(img_ball, 0, 0, options.ball.radius * options.renderScale*2, options.ball.radius * options.renderScale*2)
 		pop()
 	}
 }

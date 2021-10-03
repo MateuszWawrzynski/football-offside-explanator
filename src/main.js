@@ -7,10 +7,24 @@ let offsideLine
 let sound_whistle
 let sound_ballkick
 
+let img_kit_def
+let img_kit_def_gk
+let img_kit_atk
+let img_kit_atk_gk
+let img_ball
+let img_offside_flag
+
 let selectedPlayer = undefined
 let toggleRun = false
 
-
+function preload(){
+    img_kit_atk = loadImage('src/assets/img/kits/team-atk-kit.png')
+    img_kit_atk_gk = loadImage('src/assets/img/kits/team-atk-kit-gk.png')
+    img_kit_def = loadImage('src/assets/img/kits/team-def-kit.png')
+    img_kit_def_gk = loadImage('src/assets/img/kits/team-def-kit-gk.png')
+    img_ball = loadImage('src/assets/img/ball.png')
+    img_offside_flag = loadImage('src/assets/img/offside-flag.png')
+}
 function setup() {
     //  add whistle sound
     sound_whistle = createAudio('src/assets/sfx/whistle.mp3')

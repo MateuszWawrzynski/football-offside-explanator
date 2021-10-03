@@ -28,6 +28,7 @@ class OffsideLine {
 		strokeWeight(2)
 		stroke(options.offside.lineColor)
 		line(this.posX, 0, this.posX, height)
+		image(img_offside_flag, this.posX, 0, options.players.bodyRadius * options.renderScale, options.players.bodyRadius * options.renderScale)
 		pop()
 	}
 }

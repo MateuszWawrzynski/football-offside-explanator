@@ -37,25 +37,23 @@ class Player {
 		if(this.selected){
 			stroke(125 + frameCount % 60, 0, 0)
 			strokeWeight(3)
-			line(-options.players.bodyRadius, options.players.bodyRadius, options.players.bodyRadius, options.players.bodyRadius)
+			line(-options.players.bodyRadius, options.players.bodyRadius*2, options.players.bodyRadius, options.players.bodyRadius*2)
 		}
 
 		// kit color
+		imageMode(CENTER)
 		if(this.team == TEAM_DEF){
-			fill(options.players.defendersColor)
+			if(this.isGK)
+				image(img_kit_def_gk, 0, 0, options.players.bodyRadius * options.renderScale*3, options.players.bodyRadius * options.renderScale*3)
+			else
+				image(img_kit_def, 0, 0, options.players.bodyRadius * options.renderScale*3, options.players.bodyRadius * options.renderScale*3)
 		}
 		else if(this.team == TEAM_ATK){
-			fill(options.players.attackersColor)
+			if(this.isGK)
+				image(img_kit_atk_gk, 0, 0, options.players.bodyRadius * options.renderScale*3, options.players.bodyRadius * options.renderScale*3)
+			else
+				image(img_kit_atk, 0, 0, options.players.bodyRadius * options.renderScale*3, options.players.bodyRadius * options.renderScale*3)
 		}
-
-		// goalkeeper kit
-		if(this.isGK)
-			stroke(options.players.gkStroke)
-		else
-			stroke(255)
-
-		strokeWeight(2)
-		ellipse(0, 0, options.players.bodyRadius * options.renderScale*2)
 
 		// kit number
 		noStroke()
@@ -66,8 +64,7 @@ class Player {
 
 		//	offside indicator
 		if(offsideLine.visibility && this.team == TEAM_ATK && this.pos.x + options.players.bodyRadius > offsideLine.posX){
-			fill(options.offside.indicatorColor)
-			ellipse(0, -options.players.bodyRadius * options.renderScale*2, options.players.bodyRadius * options.renderScale)	
+			image(img_offside_flag, 0, -options.players.bodyRadius * options.renderScale*2, options.players.bodyRadius * options.renderScale, options.players.bodyRadius * options.renderScale)
 		}
 
 		//	automatic run indicator

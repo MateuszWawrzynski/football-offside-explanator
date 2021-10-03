@@ -44,20 +44,15 @@ const options = {
 
 	players: {
 		bodyRadius: 12,
-		defendersColor: '#5555FF',
-		attackersColor: '#FF5555',
-		gkStroke: '#FFBB55',
 		runMaxSpeed: 3
 	},
 
 	ball: {
 		radius: 6,
-		color: '#FFFFFF',
 		passSpeed: 10
 	},
 
 	offside: {
-		lineColor: '#FF0000',
-		indicatorColor: '#FF5522'
+		lineColor: '#FF0000'
 	}
 }
