@@ -13,11 +13,11 @@ let toggleRun = false
 
 function setup() {
     //  add whistle sound
-    sound_whistle = createAudio('src/assets/whistle.mp3')
-    sound_ballkick = createAudio('src/assets/ball-kick.mp3')
+    sound_whistle = createAudio('src/assets/sfx/whistle.mp3')
+    sound_ballkick = createAudio('src/assets/sfx/ball-kick.mp3')
 
     //  adjust renderScale to fit to the window
-    options.renderScale = (window.innerHeight * .8) / options.env.fieldHeight
+    options.renderScale = (window.innerHeight * .9) / options.env.fieldHeight
     
     createCanvas(
         (options.env.fieldWidth + options.env.fieldOffset*2) * options.renderScale, 

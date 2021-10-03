@@ -5,61 +5,40 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Football offside explanator</title>
-		<style>
-			* {
-				margin: 0;
-				padding: 0;
-				box-sizing: border-box;
-			}
-			
-			body {	
-				display: flex;
-				justify-content: space-between;
-				align-items: flex-start;
-				height: 100vh;
-				padding: 10vh 3vw;
-				background-color: #527942;
-				font-family: Montserrat, sans-serif;
-				color: white;			
-				text-shadow: 1px 1px 10px black, -1px 1px 10px black, 1px -1px 10px black, -1px -1px 10px black;
-			}
-
-			.info {
-				/* max-width: 25vw; */
-				padding: 0 2em;
-			}
-
-			.info ul {
-				margin-top: 2em;
-			}
-
-			.info li {
-				margin-bottom: .5em;
-			}
-
-			canvas {
-				box-shadow: 5px 5px 25px #325326;
-			}
-		</style>
+		<link rel="stylesheet" href="style.css">
 	</head>
 	<body>
-		<!-- INFO -->
-		<div class='info'>
-			<h1>HOW TO USE IT?</h1>
-			<ul>
-				<li>Click with the <strong>LEFT MOUSE BUTTON</strong> on players to change their positions</li>
-				<li>Aim on other player and press <strong>"E"</strong> key to pass the ball</li>
-				<li>
-					Aim on any player and press <strong>LEFT or RIGHT ARROW</strong> to make player run
-					<br />
-					(Use <strong>"S"</strong> key to pause/unpause all players runs)
-				</li>
-				<li>Press <strong>"F"</strong> key to toggle the offside line visibility</li>
-			</ul>
-			<br />
-			<p><strong>Reload the page (F5) if content doesn't fit to the browser window</strong></p>
-		</div>	
-
+		<!-- HELP POPUP -->
+		<img id='help-icon' 
+			src='src/assets/img/question-mark.svg' 
+			alt='help-icon' 
+			title='How to use this app?'
+			onClick='toggleHelpPopup()'
+		/>
+		<div id='popup-help'>
+			<div class='content'>
+				<img id='close-button' 
+					src='src/assets/img/close.svg' 
+					alt='close-button' 
+					title='Close this popup'
+					onClick='toggleHelpPopup()'
+				/>
+				<h1>HOW TO USE IT?</h1>
+				<ul>
+					<li>Click with the <strong>LEFT MOUSE BUTTON</strong> on player to change his position</li>
+					<li>Aim on other player and press <strong>"E"</strong> key to pass the ball</li>
+					<li>
+						Aim on any player and press <strong>LEFT or RIGHT ARROW</strong> to make player run
+						<br />
+						(Use <strong>"S"</strong> key to pause/unpause all players runs)
+					</li>
+					<li>Press <strong>"F"</strong> key to toggle the offside line visibility</li>
+				</ul>
+				<br />
+				<p><strong>Reload the page (F5) if content doesn't fit to the browser window</strong></p>	
+			</div>
+		</div>
+		
 		<!-- p5.js library -->
 		<script src='https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js'></script>
 
@@ -72,5 +51,14 @@
 		<script src='src/Player.js'></script>
 		<script src='src/Ball.js'></script>
 		<script src='src/OffsideLine.js'></script>
+
+		<!-- Help popup management -->
+		<script>
+			const toggleHelpPopup = () => {
+				const el = document.querySelector('#popup-help')
+				if(el.style.display == '' || el.style.display == 'none') el.style.display = 'block'
+				else if(el.style.display == 'block') el.style.display = 'none'
+			}
+		</script>
 	</body>
 </html>
