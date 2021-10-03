@@ -6,6 +6,9 @@ let offsideLine
 
 let whistle
 
+let selectedPlayer = undefined
+let toggleRun = false
+
 
 function setup() {
     //  add whistle sound
@@ -108,7 +111,6 @@ function draw() {
         offsideLine.render()
 }
 
-let selectedPlayer = undefined
 function mouseClicked(){
     if(selectedPlayer){
 		selectedPlayer.selected = false
@@ -160,5 +162,10 @@ function keyPressed(){
     //  toggle the offside line rendering
     else if(key == 'f'){
         offsideLine.visibility = !offsideLine.visibility
+    }
+
+    //  toggle the players automatic movement
+    else if(key == 's'){
+        toggleRun = !toggleRun
     }
 }

@@ -44,7 +44,8 @@ const options = {
 		bodyRadius: 12,
 		defendersColor: '#5555FF',
 		attackersColor: '#FF5555',
-		gkStroke: '#FFBB55'
+		gkStroke: '#FFBB55',
+		runMaxSpeed: 3
 	},
 
 	ball: {

@@ -15,6 +15,7 @@ class Player {
 		}
 		else{
 			if(ball.owner == this) return
+			if(!toggleRun) return
 			this.pos.add(this.runVector)
 
 			//	prevent players to run outside the canvas
@@ -25,7 +26,7 @@ class Player {
 
 	run(v){
 		if(ball.owner == this) return
-		this.runVector.add(v, 0).limit(1)
+		this.runVector.add(v, 0).limit(options.players.runMaxSpeed)
 	}
 
 	render(){
@@ -67,6 +68,20 @@ class Player {
 		if(offsideLine.visibility && this.team == TEAM_ATK && this.pos.x + options.players.bodyRadius > offsideLine.posX){
 			fill(options.offside.indicatorColor)
 			ellipse(0, -options.players.bodyRadius * options.renderScale*2, options.players.bodyRadius * options.renderScale)	
+		}
+
+		//	automatic run indicator
+		if(this.runVector.x != 0){
+			let s = ''
+			for(let a = 0; a < Math.abs(this.runVector.x); a++) s+= '~'
+			if(this.runVector.x < 0) s = '<' + s
+			else s = s + '>'
+
+			if(toggleRun) fill(255)
+			else fill(255, 0, 0)
+			stroke(0)
+			textSize(options.players.bodyRadius * options.renderScale * 1.5)
+			text(s, 0, options.players.bodyRadius * options.renderScale*2)
 		}
 		pop()
 	}
