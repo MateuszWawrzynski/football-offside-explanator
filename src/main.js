@@ -4,7 +4,8 @@ let ball
 let players = []
 let offsideLine
 
-let whistle
+let sound_whistle
+let sound_ballkick
 
 let selectedPlayer = undefined
 let toggleRun = false
@@ -12,7 +13,8 @@ let toggleRun = false
 
 function setup() {
     //  add whistle sound
-    whistle = createAudio('src/assets/whistle.mp3')
+    sound_whistle = createAudio('src/assets/whistle.mp3')
+    sound_ballkick = createAudio('src/assets/ball-kick.mp3')
 
     //  adjust renderScale to fit to the window
     options.renderScale = (window.innerHeight * .8) / options.env.fieldHeight
@@ -64,6 +66,24 @@ function setup() {
             } 
         }
     }
+    else if(options.playersInitialPosition == INIT_POS_ATK_HALF){
+        for(let p of players){
+            if(p.isGK) continue;
+            p.pos = createVector(
+                random(options.env.fieldOffset*2, width/2 - options.env.fieldOffset*2),
+                random(options.env.fieldOffset*2, height - options.env.fieldOffset*2)
+            )
+        }
+    }
+    else if(options.playersInitialPosition == INIT_POS_DEF_HALF){
+        for(let p of players){
+            if(p.isGK) continue;
+            p.pos = createVector(
+                random(width/2 + options.env.fieldOffset*2, width - options.env.fieldOffset*2),
+                random(options.env.fieldOffset*2, height - options.env.fieldOffset*2)
+            )
+        }
+    }
     else if(options.playersInitialPosition == INIT_POS_BENCH){
         for(let p of players){
             if(p.isGK) continue;
@@ -102,11 +122,12 @@ function draw() {
         p.render()
     }
 
-	//	render ball and update it position
+	//	update ball position and render it
 	ball.move()
 	ball.render()
 
-    //  draw offside line
+    //  calculate and render offside line
+    offsideLine.calculate()
     if(offsideLine.visibility)
         offsideLine.render()
 }
