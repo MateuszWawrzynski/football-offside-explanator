@@ -4,10 +4,15 @@ let ball
 let players = []
 let offsideLine
 
+let whistle
+
 
 function setup() {
+    //  add whistle sound
+    whistle = createAudio('src/assets/whistle.mp3')
+
     //  adjust renderScale to fit to the window
-    // options.renderScale = (window.innerHeight * .7) / options.env.fieldHeight
+    options.renderScale = (window.innerHeight * .8) / options.env.fieldHeight
     
     createCanvas(
         (options.env.fieldWidth + options.env.fieldOffset*2) * options.renderScale, 

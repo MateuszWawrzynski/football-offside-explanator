@@ -14,19 +14,27 @@
 			
 			body {	
 				display: flex;
-				flex-direction: column;
-				justify-content: center;
-				align-items: center;
+				justify-content: space-between;
+				align-items: flex-start;
 				height: 100vh;
+				padding: 10vh 3vw;
 				background-color: #527942;
+				font-family: Montserrat, sans-serif;
+				color: white;			
+				text-shadow: 1px 1px 10px black, -1px 1px 10px black, 1px -1px 10px black, -1px -1px 10px black;
 			}
 
 			.info {
-				margin-bottom: 3em;
-				font-family: Montserrat, sans-serif;
-				text-align: center;
-				color: white;
-				text-shadow: 1px 1px 10px black, -1px 1px 10px black, 1px -1px 10px black, -1px -1px 10px black;
+				/* max-width: 25vw; */
+				padding: 0 2em;
+			}
+
+			.info ul {
+				margin-top: 2em;
+			}
+
+			.info li {
+				margin-bottom: .5em;
 			}
 
 			canvas {
@@ -37,11 +45,20 @@
 	<body>
 		<!-- INFO -->
 		<div class='info'>
-			<p>Click with the LEFT MOUSE BUTTON on players to move their position</p>
-			<p>Aim on other player and press "E" key to pass the ball</p>
-			<p>Aim on any player and press LEFT or RIGHT ARROW to make player run</p>
-			<p>Press "F" key to toggle the offside line visibility</p>
-		</div>
+			<h1>HOW TO USE IT?</h1>
+			<ul>
+				<li>Click with the <strong>LEFT MOUSE BUTTON</strong> on players to change their positions</li>
+				<li>Aim on other player and press <strong>"E"</strong> key to pass the ball</li>
+				<li>
+					Aim on any player and press <strong>LEFT or RIGHT ARROW</strong> to make player run 
+					<br />
+					(Use <strong>"S"</strong> key to pause/unpause all players runs)
+				</li>
+				<li>Press <strong>"F"</strong> key to toggle the offside line visibility</li>
+			</ul>
+			<br />
+			<p><strong>Reload the page (F5) if content doesn't fit to the browser window</strong></p>
+		</div>	
 
 		<!-- p5.js library -->
 		<script src='https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js'></script>

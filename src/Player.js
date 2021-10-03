@@ -65,8 +65,8 @@ class Player {
 
 		//	offside indicator
 		if(offsideLine.visibility && this.team == TEAM_ATK && this.pos.x + options.players.bodyRadius > offsideLine.posX){
-			fill(options.offsideLine.color)
-			ellipse(0, -options.players.bodyRadius * options.renderScale*2, options.players.bodyRadius * options.renderScale)
+			fill(options.offside.indicatorColor)
+			ellipse(0, -options.players.bodyRadius * options.renderScale*2, options.players.bodyRadius * options.renderScale)	
 		}
 		pop()
 	}

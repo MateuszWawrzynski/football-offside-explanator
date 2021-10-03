@@ -46,7 +46,8 @@ const options = {
 		passSpeed: 10
 	},
 
-	offsideLine: {
-		color: '#FF0000'
+	offside: {
+		lineColor: '#FF0000',
+		indicatorColor: '#FFBBBB'
 	}
 }

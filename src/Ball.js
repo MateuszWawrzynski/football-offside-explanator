@@ -11,6 +11,13 @@ class Ball {
 	}
 
 	pass(newOwner){
+		//	if the pass was to player on offside
+		if(this.owner.team == TEAM_ATK){
+			if(newOwner.pos.x + options.players.bodyRadius > offsideLine.posX){
+				whistle.play()
+			}
+		}
+
 		this.owner = newOwner
 	}
 
