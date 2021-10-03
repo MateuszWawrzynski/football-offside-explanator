@@ -25,24 +25,60 @@ function setup() {
     //  add players
     // attackers
     for(let a = 0; a < 11; a++){
-        let posCalcX = (width/5) + a * (options.players.bodyRadius * options.renderScale*2.5)
-        let posCalcY = options.env.fieldOffset/3*2
-        if(a == 0) players.push(new Player(createVector(posCalcX, posCalcY), TEAM_ATK, a+1, true))
-        else players.push(new Player(createVector(posCalcX, posCalcY), TEAM_ATK, a+1))
+        if(a == 0) players.push(new Player(createVector(width/25, height/2), TEAM_ATK, a+1, true))
+        else players.push(new Player(createVector(0, 0), TEAM_ATK, a+1))
     }
     // defenders
     for(let a = 0; a < 11; a++){
-        let posCalcX = (width-width/5) - a * (options.players.bodyRadius * options.renderScale*2.5)
-        let posCalcY = options.env.fieldOffset/3*2
-        if(a == 0) players.push(new Player(createVector(posCalcX, posCalcY), TEAM_DEF, a+1, true))
-        else players.push(new Player(createVector(posCalcX, posCalcY), TEAM_DEF, a+1))
+        if(a == 0) players.push(new Player(createVector(width-width/25, height/2), TEAM_DEF, a+1, true))
+        else players.push(new Player(createVector(0, 0), TEAM_DEF, a+1))
     }
 
-    //  randomize players positions
-    // for(let p of players){
-    //     p.pos.x = random(width/10, width-width/10)
-    //     p.pos.y = random(height/10, height-height/10)
-    // }
+    //  set players positions
+    if(options.playersInitialPosition == INIT_POS_RANDOM){
+        for(let p of players){
+            if(p.isGK) continue;
+            p.pos = createVector(
+                random(options.env.fieldOffset*2, width - options.env.fieldOffset*2),
+                random(options.env.fieldOffset*2, height - options.env.fieldOffset*2)
+            )
+        }
+    }
+    else if(options.playersInitialPosition == INIT_POS_OWN_HALF){
+        for(let p of players){
+            if(p.isGK) continue;
+            if(p.team == TEAM_ATK){
+                p.pos = createVector(
+                    random(options.env.fieldOffset*2, width/2 - options.env.fieldOffset*2),
+                    random(options.env.fieldOffset*2, height - options.env.fieldOffset*2)
+                )
+            }
+            else if(p.team == TEAM_DEF){
+                p.pos = createVector(
+                    random(width/2 + options.env.fieldOffset*2, width - options.env.fieldOffset*2),
+                    random(options.env.fieldOffset*2, height - options.env.fieldOffset*2)
+                )
+            } 
+        }
+    }
+    else if(options.playersInitialPosition == INIT_POS_BENCH){
+        for(let p of players){
+            if(p.isGK) continue;
+            if(p.team == TEAM_ATK){
+                p.pos = createVector(
+                    (width/7) + p.number * (options.players.bodyRadius * options.renderScale*2.5),
+                    options.env.fieldOffset/3*2
+                )
+            }
+            else if(p.team == TEAM_DEF){
+                p.pos = createVector(
+                    (width-width/7) - p.number * (options.players.bodyRadius * options.renderScale*2.5),
+                    options.env.fieldOffset/3*2
+                )
+            }
+        }
+    }
+    
 
 	//	add ball and pass it to random player
 	ball = new Ball(random(players))

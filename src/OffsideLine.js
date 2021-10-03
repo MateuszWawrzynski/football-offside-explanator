@@ -1,7 +1,7 @@
 class OffsideLine {
 	constructor(){
 		this.visibility = false
-		this.posX = 0
+		this.posX = Infinity
 	}
 	
 	render(){
@@ -20,7 +20,7 @@ class OffsideLine {
 			lastDefenderX = ball.pos.x + options.players.bodyRadius + options.ball.radius
 		}
 		
-		this.posX = lastDefenderX
+		this.posX = Math.max(width/2, lastDefenderX)
 		line(this.posX, 0, this.posX, height)
 		pop()
 	}

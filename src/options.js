@@ -3,9 +3,16 @@
 const TEAM_DEF = 0;
 const TEAM_ATK = 1;
 
+//	Players initial positions on the pitch
+const INIT_POS_RANDOM = 0; 	 // complely random
+const INIT_POS_OWN_HALF = 1; // random formation on own side 
+const INIT_POS_BENCH = 2;	 // start on bench	
+
+
 //	Environment options
 const options = {
 	renderScale: 1,
+	playersInitialPosition: INIT_POS_RANDOM,
 
 	env: {
 		fieldOffset: 20,
@@ -48,6 +55,6 @@ const options = {
 
 	offside: {
 		lineColor: '#FF0000',
-		indicatorColor: '#FFBBBB'
+		indicatorColor: '#FF5522'
 	}
 }
