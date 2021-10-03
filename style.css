@@ -75,7 +75,7 @@ canvas {
 	padding: 0 1em;
 }
 #popup-help > .content > ul > li {
-	margin: 1em 0 2em;
+	margin: 1em 0;
 	padding-bottom: .5em;
 	border-bottom: 1px solid green;
 }

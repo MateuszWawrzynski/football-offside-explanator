@@ -14,7 +14,7 @@ class Player {
 			this.pos = createVector(mouseX, mouseY - options.players.bodyRadius/2 * options.renderScale)
 		}
 		else{
-			if(ball.owner == this) return
+			// if(ball.owner == this) return
 			if(!toggleRun) return
 			this.pos.add(this.runVector)
 
@@ -25,7 +25,7 @@ class Player {
 	}
 
 	run(v){
-		if(ball.owner == this) return
+		// if(ball.owner == this) return
 		this.runVector.add(v, 0).limit(options.players.runMaxSpeed)
 	}
 
@@ -82,4 +82,68 @@ class Player {
 		}
 		pop()
 	}
+}
+
+function putPlayersOnPitch(mode){
+	if(mode == INIT_POS_RANDOM){
+        for(let p of players){
+            if(p.isGK) continue;
+            p.pos = createVector(
+                random(options.env.fieldOffset*2, width - options.env.fieldOffset*2),
+                random(options.env.fieldOffset*2, height - options.env.fieldOffset*2)
+            )
+        }
+    }
+    else if(mode == INIT_POS_OWN_HALF){
+        for(let p of players){
+            if(p.isGK) continue;
+            if(p.team == TEAM_ATK){
+                p.pos = createVector(
+                    random(options.env.fieldOffset*2, width/2 - options.env.fieldOffset*2),
+                    random(options.env.fieldOffset*2, height - options.env.fieldOffset*2)
+                )
+            }
+            else if(p.team == TEAM_DEF){
+                p.pos = createVector(
+                    random(width/2 + options.env.fieldOffset*2, width - options.env.fieldOffset*2),
+                    random(options.env.fieldOffset*2, height - options.env.fieldOffset*2)
+                )
+            } 
+        }
+    }
+    else if(mode == INIT_POS_ATK_HALF){
+        for(let p of players){
+            if(p.isGK) continue;
+            p.pos = createVector(
+                random(options.env.fieldOffset*2, width/2 - options.env.fieldOffset*2),
+                random(options.env.fieldOffset*2, height - options.env.fieldOffset*2)
+            )
+        }
+    }
+    else if(mode == INIT_POS_DEF_HALF){
+        for(let p of players){
+            if(p.isGK) continue;
+            p.pos = createVector(
+                random(width/2 + options.env.fieldOffset*2, width - options.env.fieldOffset*2),
+                random(options.env.fieldOffset*2, height - options.env.fieldOffset*2)
+            )
+        }
+    }
+    else if(mode == INIT_POS_BENCH){
+        for(let p of players){
+            if(p.isGK) continue;
+            if(p.team == TEAM_ATK){
+                p.pos = createVector(
+                    (width/7) + p.number * (options.players.bodyRadius * options.renderScale*2.5),
+                    options.env.fieldOffset/3*2
+                )
+            }
+            else if(p.team == TEAM_DEF){
+                p.pos = createVector(
+                    (width-width/7) - p.number * (options.players.bodyRadius * options.renderScale*2.5),
+                    options.env.fieldOffset/3*2
+                )
+            }
+        }
+    }
 }

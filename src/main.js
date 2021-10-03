@@ -18,18 +18,19 @@ let selectedPlayer = undefined
 let toggleRun = false
 
 function preload(){
+    //  load images
     img_kit_atk = loadImage('src/assets/img/kits/team-atk-kit.png')
     img_kit_atk_gk = loadImage('src/assets/img/kits/team-atk-kit-gk.png')
     img_kit_def = loadImage('src/assets/img/kits/team-def-kit.png')
     img_kit_def_gk = loadImage('src/assets/img/kits/team-def-kit-gk.png')
     img_ball = loadImage('src/assets/img/ball.png')
     img_offside_flag = loadImage('src/assets/img/offside-flag.png')
-}
-function setup() {
-    //  add whistle sound
+
+    //  load sounds
     sound_whistle = createAudio('src/assets/sfx/whistle.mp3')
     sound_ballkick = createAudio('src/assets/sfx/ball-kick.mp3')
-
+}
+function setup() {
     //  adjust renderScale to fit to the window
     options.renderScale = (window.innerHeight * .9) / options.env.fieldHeight
     
@@ -54,68 +55,7 @@ function setup() {
     }
 
     //  set players positions
-    if(options.playersInitialPosition == INIT_POS_RANDOM){
-        for(let p of players){
-            if(p.isGK) continue;
-            p.pos = createVector(
-                random(options.env.fieldOffset*2, width - options.env.fieldOffset*2),
-                random(options.env.fieldOffset*2, height - options.env.fieldOffset*2)
-            )
-        }
-    }
-    else if(options.playersInitialPosition == INIT_POS_OWN_HALF){
-        for(let p of players){
-            if(p.isGK) continue;
-            if(p.team == TEAM_ATK){
-                p.pos = createVector(
-                    random(options.env.fieldOffset*2, width/2 - options.env.fieldOffset*2),
-                    random(options.env.fieldOffset*2, height - options.env.fieldOffset*2)
-                )
-            }
-            else if(p.team == TEAM_DEF){
-                p.pos = createVector(
-                    random(width/2 + options.env.fieldOffset*2, width - options.env.fieldOffset*2),
-                    random(options.env.fieldOffset*2, height - options.env.fieldOffset*2)
-                )
-            } 
-        }
-    }
-    else if(options.playersInitialPosition == INIT_POS_ATK_HALF){
-        for(let p of players){
-            if(p.isGK) continue;
-            p.pos = createVector(
-                random(options.env.fieldOffset*2, width/2 - options.env.fieldOffset*2),
-                random(options.env.fieldOffset*2, height - options.env.fieldOffset*2)
-            )
-        }
-    }
-    else if(options.playersInitialPosition == INIT_POS_DEF_HALF){
-        for(let p of players){
-            if(p.isGK) continue;
-            p.pos = createVector(
-                random(width/2 + options.env.fieldOffset*2, width - options.env.fieldOffset*2),
-                random(options.env.fieldOffset*2, height - options.env.fieldOffset*2)
-            )
-        }
-    }
-    else if(options.playersInitialPosition == INIT_POS_BENCH){
-        for(let p of players){
-            if(p.isGK) continue;
-            if(p.team == TEAM_ATK){
-                p.pos = createVector(
-                    (width/7) + p.number * (options.players.bodyRadius * options.renderScale*2.5),
-                    options.env.fieldOffset/3*2
-                )
-            }
-            else if(p.team == TEAM_DEF){
-                p.pos = createVector(
-                    (width-width/7) - p.number * (options.players.bodyRadius * options.renderScale*2.5),
-                    options.env.fieldOffset/3*2
-                )
-            }
-        }
-    }
-    
+    putPlayersOnPitch(options.playersInitialPosition)
 
 	//	add ball and pass it to random player
 	ball = new Ball(random(players))
@@ -202,5 +142,20 @@ function keyPressed(){
     //  toggle the players automatic movement
     else if(key == 's'){
         toggleRun = !toggleRun
+    }
+
+    //  change all players position
+    else if(key == 'r'){
+        let mode = prompt(`
+            Type players position mode number below:\n
+            0 - All players stand completely random
+            1 - Each team has random formation on own side
+            2 - All players random on attackers team side
+            3 - All players random on defenders team side
+            4 - Everyone starts on bench
+        `)
+
+        if(mode == null) return
+        putPlayersOnPitch(parseInt(mode) || options.playersInitialPosition)
     }
 }

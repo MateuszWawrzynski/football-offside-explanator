@@ -8,7 +8,7 @@ const INIT_POS_RANDOM = 0; 	 // all players stand completely random
 const INIT_POS_OWN_HALF = 1; // each team has random formation on own side 
 const INIT_POS_ATK_HALF = 2; // all players random on attackers team side 
 const INIT_POS_DEF_HALF = 3; // all players random on defenders team side 
-const INIT_POS_BENCH = 4;	 // start on bench	
+const INIT_POS_BENCH = 4;	 // everyone starts on bench	
 
 
 //	Environment options
